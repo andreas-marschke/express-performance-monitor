@@ -1,0 +1,44 @@
+{
+  "name": "express-performance-monitor",
+  "version": "0.0.1",
+  "description": "Monitoring tooling agnostic Express Application Server in-process performance monitoring middleware and agent",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.12.0",
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-jsdoc": "^2.1.0",
+    "grunt-mocha-test": "^0.13.2",
+    "gruntify-eslint": "^3.1.0",
+    "jsdoc": "^3.4.3",
+    "mocha": "^3.2.0",
+    "mockery": "^2.0.0",
+    "nock": "^9.0.2"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreas-marschke/express-monitor.git"
+  },
+  "keywords": [
+    "monitoring",
+    "performance",
+    "express"
+  ],
+  "author": "Andreas Marschke <npm@andreas-marschke.name>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andreas-marschke/express-monitor/issues"
+  },
+  "homepage": "https://github.com/andreas-marschke/express-monitor#readme"
+}

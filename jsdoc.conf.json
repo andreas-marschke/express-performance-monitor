@@ -1,0 +1,31 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "plugins": [
+    "./node_modules/jsdoc/plugins/markdown"
+  ],
+  "templates": {
+    "cleverLinks": true,
+    "monospaceLinks": true,
+    "dateFormat": "ddd MMM Do YYYY",
+    "outputSourceFiles": false,
+    "outputSourcePath": false,
+    "systemName": "express-performance-monitor",
+    "footer": "",
+    "copyright": "Andreas Marschke © 2016",
+    "theme": "cosmo",
+    "linenums": false,
+    "collapseSymbols": false,
+    "inverseNav": false,
+    "highlightTutorialCode": true,
+    "protocol": "html://"
+  },
+  "markdown": {
+    "parser": "gfm",
+    "hardwrap": true
+  },
+  "opts": {
+    "recurse": true
+  }
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>express-performance-monitor</h1><blockquote>
+<p>Monitoring tooling agnostic Express Application Server in-process performance monitoring middleware and agent</p>
+</blockquote>
+<p>With <code>express-monitor</code> provides node application server developers with a flexible way of implementing service specific monitoring over a<br>unified interface. You can monitor your current express app, internals, add new monitoring fields and extend the exposed monitoring data</p>
+<h2>Example Configuration</h2><p>In this simplified example we </p>
+<pre class="prettyprint source lang-javascript"><code>
+var Manager = require(&quot;express-performance-monitor&quot;).Manager;
+
+var app = require(&quot;express&quot;)();
+
+var manager = new monitor.Manager({
+    maxRetention: 1000 * 60 * 5,
+    aggregate: 60,
+    apis: [&quot;web&quot;],
+    server: {
+        &quot;web&quot;: {
+            port: 3001,
+            listen: &quot;0.0.0.0&quot;
+        }
+    });
+
+var middleware = require(&quot;express-performance-monitor&quot;).middleware(manager);
+// IMPORTANT: to make sure we see everythin add this as the first middleware in your middleware stack
+app.use(middleware);
+
+app.get(&quot;/&quot;, function(req, res) {
+  res.sendStatus(200);
+});
+
+app.listen(3000, function() {
+  console.log(&quot;Listening on localhost:3000&quot;);
+});</code></pre><p>Out of the box you will get statistics for:</p>
+<ul>
+<li>CPU utilization</li>
+<li>memory usage</li>
+<li>request count</li>
+<li>transferred bytes</li>
+</ul>
+<p>for each network request sent through your express app.</p>
+<h2>Adding custom fields</h2><p>The middleware will store aggregated performance data specific to the type of data you wish to collect.</p>
+<p>Depending on the metrics you are interested in different types of aggregation can be applied. Here are a few examples we already provide:</p>
+<h3>Average aggregation</h3><pre class="prettyprint source lang-json"><code>{
+  &quot;name&quot;: &quot;memory&quot;,
+  &quot;type&quot;: &quot;avg&quot;,
+  &quot;aggregate&quot;: 60
+}</code></pre><p>Example usage:</p>
+<pre class="prettyprint source lang-javascript"><code>var pidusage = require(&quot;pidusage&quot;);
+pidusage.stat(process.pid, function(err, stat) {
+    if (err) {
+        return;
+    }
+    manager.addDataPoint(&quot;memory&quot;, stat.memory);
+});</code></pre><p>Averaged over each event and collected data this will store the last minute of memory and aggregate the metric</p>
+<h3>Counter aggregation</h3><pre class="prettyprint source lang-json"><code>{
+  &quot;name&quot;: &quot;requestCount&quot;,
+  &quot;type&quot;: &quot;count&quot;,
+  &quot;aggregate&quot;: 60
+}</code></pre><p>Example usage:</p>
+<pre class="prettyprint source lang-javascript"><code>manager.addDataPoint(&quot;requestCount&quot;);</code></pre><p>Count-style aggregation with a configuration like this will provide a counter that will reset every minute and have a histogram for the last minute<br>of the counter.</p>
+<h3>Summized or cumulative aggregation</h3><pre class="prettyprint source lang-json"><code>{
+  &quot;name&quot;: &quot;transferredBytes&quot;,
+  &quot;type&quot;: &quot;cumulative&quot;,
+  &quot;aggregate&quot;: 60
+}</code></pre><p>Example usage:</p>
+<pre class="prettyprint source lang-javascript"><code>manager.addDataPoint(&quot;transferredBytes&quot;, data.length);</code></pre><p>This is a special type of the Counter where the value added to the counter is not affixed to the a single increment but the value passed into the<br>datapoint addition call.</p>
+<h2>Express Middleware</h2><p>Interacting with the Manager instance during your express applications lifecycle is possible using the express Request object parameter passed into<br>every callback.</p>
+<p>You can find it under the <code>req.monitor.manager</code> object in your callback:</p>
+<pre class="prettyprint source lang-javascript"><code>app.get(&quot;/status&quot;, function(req, res) {
+  res.json(req.monitor.manager.getState());
+});</code></pre><p>Please review the API documentation for more information on how to interact with the Manager instance.</p>
+<h1>Integration with Monitoring Tools</h1><p>Using the API Module infrastructure you are free to either use the provided API endpoint modules provided out of the box with this package<br>or write your own module. Have a look at the <code>lib/apis/example.js</code> for a simple example of how to implement your own API endpoints applicable<br>for your environment.</p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Example.html">Example</a></li><li><a href="module-middleware.html">middleware</a></li><li><a href="monitor.apis.module_web.html">web</a></li></ul><h3>Classes</h3><ul><li><a href="Manager.html">Manager</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Dec 15 2016 08:23:48 GMT+0100 (CET)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
