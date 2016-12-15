@@ -11,7 +11,7 @@
     "dateFormat": "ddd MMM Do YYYY",
     "outputSourceFiles": false,
     "outputSourcePath": false,
-    "systemName": "express-monitor",
+    "systemName": "express-performance-monitor",
     "footer": "",
     "copyright": "Andreas Marschke © 2016",
     "theme": "cosmo",

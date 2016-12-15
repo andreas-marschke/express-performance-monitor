@@ -1,5 +1,5 @@
 {
-  "name": "express-monitor",
+  "name": "express-performance-monitor",
   "version": "0.0.1",
   "description": "Monitoring tooling agnostic Express Application Server in-process performance monitoring middleware and agent",
   "main": "index.js",

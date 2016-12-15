@@ -1,4 +1,4 @@
-# express-monitor
+# express-performance-monitor
 
 > Monitoring tooling agnostic Express Application Server in-process performance monitoring middleware and agent
 
@@ -11,7 +11,7 @@ In this simplified example we
 
 ```javascript
 
-var Manager = require("express-monitor").Manager;
+var Manager = require("express-performance-monitor").Manager;
 
 var app = require("express")();
 
@@ -26,7 +26,7 @@ var manager = new monitor.Manager({
 		}
 	});
 
-var middleware = require("express-monitor").middleware(manager);
+var middleware = require("express-performance-monitor").middleware(manager);
 // IMPORTANT: to make sure we see everythin add this as the first middleware in your middleware stack
 app.use(middleware);
 
