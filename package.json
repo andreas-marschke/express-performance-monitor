@@ -21,8 +21,7 @@
     "jsdoc": "^3.4.3",
     "mocha": "^3.2.0",
     "mockery": "^2.0.0",
-    "nock": "^9.0.2",
-    "snmpjs": "^0.1.8"
+    "nock": "^9.0.2"
   },
   "scripts": {
     "test": "mocha"
